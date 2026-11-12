@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Carnicería La Mesa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
+<style>
+/* Concepto: pizarra de carnicería. Tipografía condensada pesada como el logo, rojo y negro,
+   listas de cortes con puntos guía como en un menú de mostrador. */
+:root {
+  --bg: #FBF8F7;
+  --surface: #FFFFFF;
+  --fg: #1A1514;
+  --muted: #6A5F5C;
+  --line: #DDD1CE;
+  --red: #CF2118;
+  --red-text: #C31E15;
+  --on-red: #FFFFFF;
+  --band: #1A1514;
+  --band-fg: #F7F1EF;
+  --band-muted: #BDB0AC;
+  --band-line: #3B302E;
+
+  --font-display: "Anton", "Impact", "Arial Narrow", sans-serif;
+  --font-body: "Barlow", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-label: "Barlow Condensed", "Arial Narrow", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #141010;
+    --surface: #1E1918;
+    --fg: #F4EEEC;
+    --muted: #B5A8A4;
+    --line: #3A302E;
+    --red: #D92B20;
+    --red-text: #FF7468;
+    --band: #0B0807;
+    --band-fg: #F7F1EF;
+    --band-muted: #B5A8A4;
+    --band-line: #382D2B;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #141010;
+  --surface: #1E1918;
+  --fg: #F4EEEC;
+  --muted: #B5A8A4;
+  --line: #3A302E;
+  --red: #D92B20;
+  --red-text: #FF7468;
+  --band: #0B0807;
+  --band-fg: #F7F1EF;
+  --band-muted: #B5A8A4;
+  --band-line: #382D2B;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.55;
+}
+img { display: block; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--red); outline-offset: 3px; }
+
+.wrap {
+  width: 100%;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.label {
+  font-family: var(--font-label);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  font-size: .9rem;
+  color: var(--red-text);
+}
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: 1.02;
+  letter-spacing: .01em;
+  text-wrap: balance;
+  margin: 0;
+}
+h2 { font-size: clamp(2rem, 5vw, 3.4rem); }
+p { margin: 0; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+  font-family: var(--font-label);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  font-size: 1.05rem;
+  text-decoration: none;
+  padding: .85rem 1.4rem;
+  border: 2px solid var(--red);
+  background: var(--red);
+  color: var(--on-red);
+}
+.btn:hover { filter: brightness(1.08); }
+.btn.ghost { background: transparent; color: var(--fg); border-color: var(--fg); }
+.btn.ghost:hover { background: var(--fg); color: var(--bg); filter: none; }
+
+/* Encabezado */
+.top { padding-block: 18px; }
+.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.logo { background: #fff; padding: 8px 14px; display: inline-block; }
+.logo img { width: 230px; max-width: 100%; height: auto; }
+.nav { display: flex; gap: 1.6rem; font-family: var(--font-label); font-weight: 700; text-transform: uppercase; letter-spacing: .12em; font-size: 1rem; }
+.nav a { text-decoration: none; padding-block: 6px; border-bottom: 2px solid transparent; }
+.nav a:hover { border-bottom-color: var(--red); }
+
+/* Portada */
+.hero { padding-block: clamp(32px, 6vw, 72px) clamp(40px, 7vw, 88px); }
+.hero .wrap { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: clamp(28px, 5vw, 64px); align-items: end; }
+.hero h1 { font-size: clamp(2.7rem, 8.2vw, 6rem); margin-top: 14px; }
+.hero h1 em { font-style: normal; color: var(--red-text); }
+.hero .lead { margin-top: 22px; max-width: 34rem; font-size: 1.2rem; color: var(--muted); }
+.hero .cta { margin-top: 30px; display: flex; gap: 12px; flex-wrap: wrap; }
+.board { list-style: none; margin: 0; padding: 0; border-bottom: 2px solid var(--fg); }
+.board li { border-top: 2px solid var(--fg); }
+.board a {
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+  text-decoration: none;
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  font-size: clamp(2.4rem, 7vw, 4.6rem);
+  line-height: 1.12;
+  padding: 6px 4px;
+}
+.board a span { font-family: var(--font-label); font-weight: 700; letter-spacing: .1em; font-size: 1rem; color: var(--muted); text-transform: uppercase; }
+.board a:hover { color: var(--red-text); }
+
+/* Franja */
+.strip { background: var(--red); color: var(--on-red); padding-block: 14px; }
+.strip .wrap { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 2.2rem; font-family: var(--font-label); font-weight: 700; text-transform: uppercase; letter-spacing: .2em; font-size: 1.1rem; }
+
+/* Cortes */
+.cuts { padding-block: clamp(48px, 8vw, 96px); }
+.head { display: grid; gap: 12px; max-width: 40rem; margin-bottom: clamp(28px, 5vw, 52px); }
+.head p { color: var(--muted); }
+.cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: clamp(24px, 3.5vw, 44px); }
+.cut { min-width: 0; scroll-margin-top: 24px; }
+.cut h3 { font-size: 2.6rem; padding-bottom: 12px; border-bottom: 4px solid var(--red); }
+.cut ul { list-style: none; margin: 0; padding: 0; }
+.cut li { display: flex; align-items: baseline; gap: 10px; padding-block: 11px; }
+.cut .name { font-weight: 600; min-width: 0; }
+.cut .dots { flex: 1 1 14px; min-width: 14px; border-bottom: 2px dotted var(--line); transform: translateY(-4px); }
+.cut .use { color: var(--muted); text-align: right; min-width: 0; font-size: .98rem; }
+
+/* Mayoreo */
+.dist { background: var(--band); color: var(--band-fg); padding-block: clamp(48px, 8vw, 96px); }
+.dist .wrap { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: clamp(28px, 5vw, 72px); align-items: center; }
+.dist h2 { margin-top: 12px; }
+.dist p { color: var(--band-muted); margin-top: 20px; max-width: 34rem; font-size: 1.12rem; }
+.dist .btn { margin-top: 28px; }
+.dist .label { color: #FF7468; }
+.who { list-style: none; margin: 0; padding: 0; }
+.who li { font-family: var(--font-display); text-transform: uppercase; font-size: clamp(1.5rem, 3.6vw, 2.2rem); line-height: 1.1; padding-block: 14px; border-top: 1px solid var(--band-line); }
+.who li:last-child { border-bottom: 1px solid var(--band-line); }
+
+/* Por qué */
+.why { padding-block: clamp(48px, 8vw, 96px); }
+.pts { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 32px clamp(24px, 3vw, 40px); }
+.pt { min-width: 0; border-top: 2px solid var(--fg); padding-top: 16px; }
+.pt h3 { font-family: var(--font-label); font-weight: 700; letter-spacing: .06em; font-size: 1.5rem; line-height: 1.1; }
+.pt p { margin-top: 10px; color: var(--muted); }
+
+/* Contacto */
+.contact { background: var(--surface); border-top: 1px solid var(--line); padding-block: clamp(48px, 8vw, 96px); scroll-margin-top: 0; }
+.contact .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 28px clamp(24px, 4vw, 56px); }
+.contact dt { font-family: var(--font-label); font-weight: 700; text-transform: uppercase; letter-spacing: .14em; font-size: .9rem; color: var(--red-text); }
+.contact dd { margin: 6px 0 0; font-size: 1.25rem; font-weight: 500; overflow-wrap: anywhere; }
+.contact dd small { display: block; font-size: .95rem; font-weight: 400; color: var(--muted); margin-top: 2px; }
+.contact .btn { margin-top: 14px; font-size: 1rem; }
+
+.foot { padding-block: 28px; font-size: .95rem; color: var(--muted); }
+.foot .wrap { display: flex; justify-content: space-between; gap: 8px 24px; flex-wrap: wrap; }
+
+@media (max-width: 820px) {
+  .hero .wrap, .dist .wrap { grid-template-columns: minmax(0, 1fr); }
+  .nav { gap: 1.1rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; }
+img { max-width: 100%; }
+</style>
+</head>
+<body>
+
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#inicio" aria-label="Carnicería y Distribuidora La Mesa">
+      <img src="logo.png" alt="Carnicería y Distribuidora La Mesa" width="424" height="97">
+    </a>
+    <nav class="nav" aria-label="Secciones">
+      <a href="#cortes">Cortes</a>
+      <a href="#mayoreo">Mayoreo</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </div>
+</header>
+
+<main id="inicio">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <span class="label">Carnicería y distribuidora</span>
+        <h1>La carne de tu mesa, cortada a <em>tu gusto</em></h1>
+        <p class="lead">Res y cerdo fresco para tu familia, tu taquería o tu restaurante. Dinos qué vas a preparar y te lo cortamos en el mostrador.</p>
+        <div class="cta">
+          <a class="btn" href="https://wa.me/523329386007?text=Hola%2C%20quiero%20hacer%20un%20pedido">Haz tu pedido</a>
+          <a class="btn ghost" href="#cortes">Ver cortes</a>
+        </div>
+      </div>
+      <ul class="board" aria-label="Tipos de carne">
+        <li><a href="#res">Res <span>ver cortes</span></a></li>
+        <li><a href="#cerdo">Cerdo <span>ver cortes</span></a></li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="strip">
+    <div class="wrap">
+      <span>Fresco</span><span>Al corte</span><span>Menudeo</span><span>Mayoreo</span>
+    </div>
+  </div>
+
+  <section class="cuts" id="cortes">
+    <div class="wrap">
+      <div class="head">
+        <span class="label">En el mostrador</span>
+        <h2>Cada corte para su guiso</h2>
+        <p>Una muestra de lo que manejamos. Si buscas otro corte o un grosor especial, pídelo.</p>
+      </div>
+      <div class="cols">
+        <article class="cut" id="res">
+          <h3>Res</h3>
+          <ul>
+            <li><span class="name">Bistec de res</span><span class="dots"></span><span class="use">para guisar</span></li>
+            <li><span class="name">Bistec para asar</span><span class="dots"></span><span class="use">a la parrilla</span></li>
+            <li><span class="name">Carne molida</span><span class="dots"></span><span class="use">hamburguesa y albóndiga</span></li>
+            <li><span class="name">Carne para deshebrar</span><span class="dots"></span><span class="use">tinga y tacos</span></li>
+            <li><span class="name">Diezmillo</span><span class="dots"></span><span class="use">para guisados</span></li>
+            <li><span class="name">New York</span><span class="dots"></span><span class="use">para asar</span></li>
+            <li><span class="name">Espalda</span><span class="dots"></span><span class="use">para guisar</span></li>
+            <li><span class="name">Pulpa blanca</span><span class="dots"></span><span class="use">para bistec</span></li>
+            <li><span class="name">Suadero</span><span class="dots"></span><span class="use">para tacos</span></li>
+            <li><span class="name">Costilla</span><span class="dots"></span><span class="use">caldo y carbón</span></li>
+            <li><span class="name">Lengua</span><span class="dots"></span><span class="use">para cocer</span></li>
+            <li><span class="name">Menudo</span><span class="dots"></span><span class="use">para menudo</span></li>
+            <li><span class="name">Tripa</span><span class="dots"></span><span class="use">delgada y gruesa</span></li>
+            <li><span class="name">Patas de res</span><span class="dots"></span><span class="use">para caldo</span></li>
+            <li><span class="name">Librillo</span><span class="dots"></span><span class="use">para cocer</span></li>
+            <li><span class="name">Corral</span><span class="dots"></span><span class="use">para cocer</span></li>
+            <li><span class="name">Cuajo</span><span class="dots"></span><span class="use">para cocer</span></li>
+            <li><span class="name">Labio</span><span class="dots"></span><span class="use">para tacos</span></li>
+            <li><span class="name">Cabeza de res</span><span class="dots"></span><span class="use">barbacoa</span></li>
+          </ul>
+        </article>
+        <article class="cut" id="cerdo">
+          <h3>Cerdo</h3>
+          <ul>
+            <li><span class="name">Chorizo</span><span class="dots"></span><span class="use">para freír</span></li>
+            <li><span class="name">Chuleta</span><span class="dots"></span><span class="use">freír o asar</span></li>
+            <li><span class="name">Rebanado</span><span class="dots"></span><span class="use">en rebanadas</span></li>
+            <li><span class="name">Pierna para deshebrar</span><span class="dots"></span><span class="use">para tinga</span></li>
+            <li><span class="name">Pierna para freír</span><span class="dots"></span><span class="use">bistec y freír</span></li>
+            <li><span class="name">Cabeza de cerdo</span><span class="dots"></span><span class="use">para cocer</span></li>
+            <li><span class="name">Manitas</span><span class="dots"></span><span class="use">en vinagre y caldo</span></li>
+            <li><span class="name">Chamorro</span><span class="dots"></span><span class="use">horno lento</span></li>
+            <li><span class="name">Hueso de cerdo</span><span class="dots"></span><span class="use">para caldo</span></li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="dist" id="mayoreo">
+    <div class="wrap">
+      <div>
+        <span class="label">Distribuidora</span>
+        <h2>¿Tienes un negocio? Te surtimos</h2>
+        <p>Además del mostrador, abastecemos cocinas que compran por volumen. Pide tu cotización y te decimos qué podemos surtirte y cada cuánto.</p>
+        <a class="btn" href="https://wa.me/523329386007?text=Hola%2C%20quiero%20una%20cotizaci%C3%B3n">Pedir cotización</a>
+      </div>
+      <ul class="who" aria-label="A quién surtimos">
+        <li>Taquerías</li>
+        <li>Restaurantes y fondas</li>
+        <li>Cocinas económicas</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="why">
+    <div class="wrap">
+      <div class="head">
+        <span class="label">Por qué La Mesa</span>
+        <h2>Carne que se nota en el plato</h2>
+      </div>
+      <div class="pts">
+        <div class="pt">
+          <h3>Cortes al momento</h3>
+          <p>Pides y lo cortamos ahí mismo, grueso o delgado, como lo necesites.</p>
+        </div>
+        <div class="pt">
+          <h3>Res y cerdo</h3>
+          <p>Todo lo de la comida de la semana en un solo lugar.</p>
+        </div>
+        <div class="pt">
+          <h3>Precio por volumen</h3>
+          <p>Si compras para un negocio, te cotizamos según lo que consumes.</p>
+        </div>
+        <div class="pt">
+          <h3>Aparta con tiempo</h3>
+          <p>Encarga tu carne para la comida del domingo, la fiesta o el evento.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<section class="contact" id="contacto">
+  <div class="wrap">
+    <div class="head">
+      <span class="label">Contacto</span>
+      <h2>Ven a La Mesa</h2>
+    </div>
+    <dl class="grid" style="margin:0">
+      <div>
+        <dt>Dirección</dt>
+        <dd>Carretera a Saltillo #85</dd>
+      </div>
+      <div>
+        <dt>Horario</dt>
+        <dd>8:00 am a 5:30 pm</dd>
+      </div>
+      <div>
+        <dt>WhatsApp y teléfono</dt>
+        <dd>
+          332 938 6007<small>WhatsApp</small>
+          <a class="btn" href="https://wa.me/523329386007?text=Hola%2C%20quiero%20hacer%20un%20pedido">Escribir por WhatsApp</a>
+        </dd>
+      </div>
+      <div>
+        <dt>Teléfono del local</dt>
+        <dd>33 3625 1142</dd>
+      </div>
+    </dl>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <span>Carnicería y Distribuidora La Mesa</span>
+    <span>© 2026</span>
+  </div>
+</footer>
+
+</body>
+</html>
